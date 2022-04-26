@@ -1,11 +1,11 @@
 #DROP DATABASE Distopia;
 CREATE DATABASE Distopia;
 
-USE Distopia;
+USE Distopia; 
 
 CREATE TABLE tbl_nicknames(
 	id_nickname INT(10) NOT NULL AUTO_INCREMENT,
-    nickname_character1 VARCHAR(5) NOT NULL UNIQUE,
+    nickname_character1 VARCHAR(15) NOT NULL UNIQUE,
     nickname_character2 VARCHAR(15) NOT NULL UNIQUE,
 
 	PRIMARY KEY (id_nickname)
@@ -22,7 +22,7 @@ CREATE TABLE tbl_users(
 );
 
 CREATE TABLE tbl_achivements(
-	id_achivement INT NOT NULL AUTO_INCREMENT,
+	id_achivement INT(10) NOT NULL AUTO_INCREMENT,
     type_achivement VARCHAR(100) NOT NULL,
     name_achivement VARCHAR(100) NOT NULL,
     img_achivement VARCHAR(500) NOT NULL,
@@ -40,3 +40,10 @@ CREATE TABLE tbl_achivement_user(
     
 );
 
+insert into tbl_nicknames (id_nickname, nickname_character1, nickname_character2) 
+				values (default, "milena", "joaozinho");
+                
+insert into tbl_nicknames (id_nickname, nickname_character1, nickname_character2) 
+				values (default, "jurema", "pedrinho");
+
+select * from tbl_nicknames;
