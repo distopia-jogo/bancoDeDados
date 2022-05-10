@@ -1,19 +1,21 @@
-#DROP DATABASE Distopia;
+DROP DATABASE Distopia;
 CREATE DATABASE Distopia;
 
 USE Distopia; 
 
 CREATE TABLE tbl_nicknames(
 	id_nickname INT(10) NOT NULL AUTO_INCREMENT,
-    nickname_character1 VARCHAR(15) NOT NULL UNIQUE,
-    nickname_character2 VARCHAR(15) NOT NULL UNIQUE,
+    nickname_1 VARCHAR(15) NOT NULL UNIQUE,
+    nickname_2 VARCHAR(15) NOT NULL UNIQUE,
 
 	PRIMARY KEY (id_nickname)
 );
 
 CREATE TABLE tbl_users(
 	id_user INT(10) NOT NULL AUTO_INCREMENT,
-    borning_date_user DATE NOT NULL,
+	email varchar(25) NOT NULL,
+    senha varchar(25) NOT NULL,
+    data_nasc DATE NOT NULL,
     FK_id_nickname INT(10) NOT NULL,
     
     PRIMARY KEY (id_user),
@@ -40,10 +42,13 @@ CREATE TABLE tbl_achivement_user(
     
 );
 
-insert into tbl_nicknames (id_nickname, nickname_character1, nickname_character2) 
-				values (default, "milena", "joaozinho");
+
+insert into tbl_nicknames (id_nickname, nickname_1, nickname_2) 
+				values (default, "nick1", "nick2");
                 
-insert into tbl_nicknames (id_nickname, nickname_character1, nickname_character2) 
-				values (default, "jurema", "pedrinho");
+insert into tbl_users (id_user, email, senha, data_nasc, FK_id_nickname) 
+				values (default, "disto@gmail.com", "disto123", "2004-08-11", @@IDENTITY);
+
 
 select * from tbl_nicknames;
+select * from tbl_users;
