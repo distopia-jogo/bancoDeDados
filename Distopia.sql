@@ -1,4 +1,3 @@
-DROP DATABASE Distopia;
 CREATE DATABASE Distopia;
 
 USE Distopia; 
@@ -44,12 +43,42 @@ CREATE TABLE tbl_achivement_user(
 
 
 insert into tbl_nicknames (id_nickname, nickname_1, nickname_2) 
-				values (default, "LEgfgfgfO", "MAgfgfgTHEUS");
+				values (default, "nick1", "nick2");
+                
+insert into tbl_users (id_user, email, senha, data_nasc, FK_id_nickname) 
+				values (default, "disto@gmail.com", "disto123", "2004-08-11", @@IDENTITY);
 
-#delete from tbl_nicknames where id_nickname = 2;
+/*
 
-insert into tbl_users(id_user, email, senha, data_nasc, FK_id_nickname) 
-				values (default, "dis@gmail.com", "disto23", "2021-01-21", @@identity);
+DELIMITER $
+CREATE TRIGGER tgr_nicknameInsert AFTER INSERT
+ON tbl_users
+FOR EACH ROW
+BEGIN
+	INSERT INTO tbl_nicknames (id_nickname, nickname_1, nickname_2) VALUES (default, "nick1", "nick2");
+END$
+
+*/
+
+BEGIN;
+insert into tbl_nicknames (id_nickname, nickname_1, nickname_2) 
+				values (default, "nick1", "nick2");
+                
+insert into tbl_users (id_user, email, senha, data_nasc, FK_id_nickname) 
+				values (default, "disto@gmail.com", "disto123", "2004-08-11", @@IDENTITY);
+COMMIT;
+
+
+DELIMITER $
+CREATE PROCEDURE pcr_userAndNickname(p_nickname_1 VARCHAR(15), p_nickname_2 VARCHAR(15), p_email varchar(25), p_senha varchar(25), p_data_nasc DATE)
+	BEGIN
+	INSERT INTO tbl_nicknames(id_nickname, nickname_1, nickname_2)
+	VALUES(default, p_nickname_1, p_nickname_2);
+	
+	INSERT INTO tbl_users(id_user, email, senha, data_nasc, FK_id_nickname)
+	VALUES(default, p_email, p_senha, p_data_nasc, @@IDENTITY);
+END $
+DELIMITER ;
 
 
 select * from tbl_nicknames;
