@@ -5,8 +5,8 @@ USE Distopia;
 
 CREATE TABLE tbl_nicknames(
 	id_nickname INT(10) NOT NULL AUTO_INCREMENT,
-    nickname_1 VARCHAR(15) NOT NULL UNIQUE,
-    nickname_2 VARCHAR(15) NOT NULL UNIQUE,
+    nickname_1 VARCHAR(15) NOT NULL,
+    nickname_2 VARCHAR(15) NOT NULL,
 
 	PRIMARY KEY (id_nickname)
 );
@@ -44,10 +44,12 @@ CREATE TABLE tbl_achivement_user(
 
 
 insert into tbl_nicknames (id_nickname, nickname_1, nickname_2) 
-				values (default, "nick1", "nick2");
-                
-insert into tbl_users (id_user, email, senha, data_nasc, FK_id_nickname) 
-				values (default, "disto@gmail.com", "disto123", "2004-08-11", @@IDENTITY);
+				values (default, "LEgfgfgfO", "MAgfgfgTHEUS");
+
+#delete from tbl_nicknames where id_nickname = 2;
+
+insert into tbl_users(id_user, email, senha, data_nasc, FK_id_nickname) 
+				values (default, "dis@gmail.com", "disto23", "2021-01-21", @@identity);
 
 
 select * from tbl_nicknames;
